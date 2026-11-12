@@ -12,8 +12,11 @@ Bloco "camadas" do projeto.json:
   "zooms": [2.72, 11.78], "zoom_forca": 0.12, "flashes": [11.78], "zoom_lento": 0.05,
   "batidas": [..] ou "batidas": "auto" (detecta na musica), "pulso_forca": 0.035,
   "progresso": {"cor": "#FFE600"}
+  "cta":      {"estilo": "cta-bufaclips", "texto": "Você concorda?", "destaque": "concorda", "duracao": 3}  (ultimos N s)
 """
-import argparse, json, os, shutil, subprocess
+import argparse, json, os, shutil, subprocess, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from projeto import carregar
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REM = os.path.join(RAIZ, "remotion")
@@ -47,7 +50,7 @@ def main():
     ap.add_argument("projeto"); ap.add_argument("pasta")
     ap.add_argument("--previa", action="store_true"); ap.add_argument("--quadros")
     a = ap.parse_args()
-    P = json.load(open(a.projeto)); base_dir = os.path.dirname(os.path.abspath(a.projeto))
+    P = carregar(a.projeto); base_dir = os.path.dirname(os.path.abspath(a.projeto))
     nome = P.get("nome", "projeto")
     info = json.load(open(os.path.join(a.pasta, "info.json")))
     pal = os.path.join(a.pasta, "palavras.json")
@@ -55,8 +58,14 @@ def main():
 
     if C.get("legenda"):
         L = C["legenda"]; C["legenda"] = {**L, "estilo": estilo("legenda", L["estilo"], L.get("ajustes"))}
-    if C.get("titulo"):
+    if C.get("titulo") and C["titulo"].get("texto"):
         T = C["titulo"]; C["titulo"] = {**T, "estilo": estilo("titulo", T["estilo"], T.get("ajustes"))}
+    if C.get("cta") and C["cta"].get("texto"):
+        T = C["cta"]; C["cta"] = {**T, "estilo": estilo("titulo", T["estilo"], T.get("ajustes"))}
+    else:
+        C.pop("cta", None)
+    if C.get("titulo") and not C["titulo"].get("texto"):
+        C.pop("titulo")
     if C.get("batidas") == "auto":
         C["batidas"] = batidas_auto(P, base_dir)
 

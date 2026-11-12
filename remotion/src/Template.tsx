@@ -3,6 +3,8 @@ import {
   AbsoluteFill, OffthreadVideo, staticFile, useCurrentFrame, useVideoConfig,
   interpolate, spring, Easing, Sequence,
 } from 'remotion';
+import '@fontsource/montserrat/800.css';
+import '@fontsource/montserrat/900.css';
 
 // ---------- tipos ----------
 type Palavra = {w: string; s: number; e: number};
@@ -17,6 +19,7 @@ type EstiloTitulo = {
   fonte: string; peso: number; tamanho: number; cor: string; fundo: string; cor_destaque?: string;
   raio: number; rotacao: number; y: number; sub_tamanho?: number; sub_cor?: string; sub_fundo?: string;
 };
+type TextoCfg = {estilo: EstiloTitulo; texto: string; destaque?: string; subtitulo?: string; de?: number; ate?: number; y?: number};
 type Emoji = {t: number; e: string; dur?: number; x?: number; y?: number; tam?: number};
 export type Props = {
   info: {duracao: number; fps: number; largura: number; altura: number};
@@ -24,7 +27,8 @@ export type Props = {
   palavras?: Palavra[];
   camadas: {
     legenda?: {estilo: EstiloLegenda; cores_palavras?: Record<string, string[]>; y?: number} | null;
-    titulo?: {estilo: EstiloTitulo; texto: string; destaque?: string; subtitulo?: string; ate?: number; y?: number} | null;
+    titulo?: TextoCfg | null;
+    cta?: (TextoCfg & {duracao?: number}) | null;   // texto final; aparece nos ultimos `duracao` s (padrao 3)
     emojis?: Emoji[];
     zooms?: number[]; zoom_forca?: number;
     flashes?: number[];
@@ -93,12 +97,14 @@ const Legenda: React.FC<{ws: Palavra[]; cfg: NonNullable<Props['camadas']['legen
 };
 
 // ---------- titulo ----------
-const Titulo: React.FC<{cfg: NonNullable<Props['camadas']['titulo']>}> = ({cfg}) => {
-  const f = useCurrentFrame();
+const Titulo: React.FC<{cfg: TextoCfg}> = ({cfg}) => {
+  const f0 = useCurrentFrame();
   const {fps} = useVideoConfig();
   const E = cfg.estilo;
+  const f = f0 - Math.round((cfg.de ?? 0) * fps);
   const tin = spring({frame: f - 4, fps, config: {damping: 13, stiffness: 160}});
-  const out = cfg.ate ? interpolate(f / fps, [cfg.ate - 0.25, cfg.ate], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}) : 1;
+  const out = cfg.ate ? interpolate(f0 / fps, [cfg.ate - 0.25, cfg.ate], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}) : 1;
+  if (f < 0) return null;
   const partes = cfg.destaque ? cfg.texto.split(cfg.destaque) : [cfg.texto];
   const caixa: React.CSSProperties = {
     display: 'inline-block', background: E.fundo, color: E.cor, fontFamily: E.fonte, fontWeight: E.peso,
@@ -161,6 +167,7 @@ export const Template: React.FC<Props> = ({video, palavras = [], camadas: C}) =>
       </AbsoluteFill>
 
       {C.titulo && <Titulo cfg={C.titulo} />}
+      {C.cta && <Titulo cfg={{...C.cta, de: C.cta.de ?? Math.max(0, durationInFrames / fps - (C.cta.duracao ?? 3))}} />}
 
       {(C.emojis ?? []).map((em, i) => (
         <Sequence key={i} from={Math.round(em.t * fps)} durationInFrames={Math.round((em.dur ?? 1.8) * fps)}>

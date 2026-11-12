@@ -20,6 +20,7 @@ python3 pipeline/render.py projetos/<nome>.json saida/<nome>/              # ví
 | Pasta | O que tem |
 |---|---|
 | `pipeline/` | scripts Python + FFmpeg |
+| `perfis/` | padrões por canal (ex.: `bufaclips`: roxo/preto, stream-dividido, CTA) |
 | `looks/` | presets de cor (ver `looks/LEIAME.md`) |
 | `estilos/` | presets de legenda e título (ver `estilos/LEIAME.md`) |
 | `remotion/` | template único de camadas (legenda, título, emojis, zoom, flash, progresso) |

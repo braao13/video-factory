@@ -5,7 +5,8 @@ Sistema de edição de vídeos curtos do Abraão. Responder em português do Bra
 ## Regras
 - Todo vídeo vira `projetos/<nome>.json`. Ajuste pedido pelo usuário = editar o JSON e re-renderizar, não reescrever código.
 - Código novo só quando faltar um recurso; se criar, deixe genérico (parâmetro no JSON), nunca específico de um vídeo.
-- Looks em `looks/`, estilos em `estilos/`. Os aprovados são base mínima, não limite: proponha novos quando o vídeo pedir, e salve como preset se o usuário aprovar.
+- Perfis de canal em `perfis/` (ex.: `bufaclips`): `"perfil": "nome"` no projeto.json aplica os padrões; o projeto sobrescreve.
+- Looks em `looks/`, estilos em `estilos/` (ganchos/CTAs por editoria em `estilos/ganchos.json`). Os aprovados são base mínima, não limite: proponha novos quando o vídeo pedir, e salve como preset se o usuário aprovar.
 - Medir antes de ajustar cor (`analisar.py`). Não clarear vídeo claro.
 - Vídeos/músicas nunca entram no git. No projeto.json, `entrada`/`musica.arquivo` apontam para o anexo da sessão.
 - Não fazer espelhamento/ruído pra driblar direitos autorais em vídeo de terceiros.

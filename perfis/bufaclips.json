@@ -1,0 +1,81 @@
+{
+  "_descricao": "BufaClips (games e streamers). Preto e roxo, legenda branca com palavras-chave roxas, Montserrat, CTA no fim. Duração 20-60s.",
+  "_obrigatorio": [
+    "editoria",
+    "autorizacao"
+  ],
+  "_editorias": [
+    "engracado",
+    "rage",
+    "jogada",
+    "historia",
+    "polemica"
+  ],
+  "_duracao": [
+    20,
+    60
+  ],
+  "look": "gamer",
+  "silencio": {
+    "ativo": true,
+    "db": -42,
+    "min": 0.6,
+    "margem": 0.15
+  },
+  "saida": {
+    "largura": 1080,
+    "altura": 1920,
+    "fps": "auto"
+  },
+  "layout": {
+    "tipo": "stream-dividido",
+    "divisao": 0.42,
+    "borda": "#8B5CF6",
+    "espessura": 8
+  },
+  "audio": {
+    "original": true,
+    "lufs": -14,
+    "limpar_voz": false
+  },
+  "camadas": {
+    "titulo": {
+      "estilo": "bufaclips",
+      "y": 730
+    },
+    "legenda": {
+      "estilo": "bufaclips",
+      "cores_palavras": {
+        "#A78BFA": [
+          "gg",
+          "clutch",
+          "ace",
+          "kill",
+          "vitória",
+          "ganhou",
+          "insano",
+          "absurdo"
+        ],
+        "#FF4D6D": [
+          "morreu",
+          "perdeu",
+          "rage",
+          "raiva",
+          "bug",
+          "azar",
+          "nerf"
+        ]
+      }
+    },
+    "cta": {
+      "estilo": "cta-bufaclips",
+      "duracao": 3,
+      "y": 1150
+    },
+    "zoom_forca": 0.12,
+    "progresso": {
+      "cor": "#8B5CF6",
+      "altura": 12
+    }
+  }
+}

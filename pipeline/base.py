@@ -12,14 +12,20 @@ Campos do projeto.json usados aqui (todos opcionais exceto "entrada"):
   silencio       {"ativo": true, "db": -30, "min": 0.15, "margem": 0.06}
   look           nome de um arquivo em looks/ (sem .json)
   ajuste_brilho  % (ex.: -12 = 12% mais escuro)
+  perfil         nome de um arquivo em perfis/ (padroes do canal; o projeto sobrescreve)
   layout         {"tipo": "fundo-desfocado", "crop_cx": 630, "crop_largura": 560, "y": 300}
+                 {"tipo": "stream-dividido", "facecam": [x, y, w, h], "jogo": [x, y, w, h] ou null,
+                  "divisao": 0.42, "borda": "#8B5CF6", "espessura": 8}
+                   (facecam em cima, jogo embaixo; retangulos em pixels do video original)
                  {"tipo": "tela-cheia", "crop_cx": null}   (preenche 9:16 cortando as laterais)
-  saida          {"largura": 1080, "altura": 1920, "fps": 30}
+  saida          {"largura": 1080, "altura": 1920, "fps": 30}   (fps "auto" = 60 se o original for ~60, senao 30)
   audio          {"original": true, "musica": {"arquivo": "...", "inicio": 10, "volume_db": 0, "ducking": true},
                   "lufs": -14, "limpar_voz": false}
   palavras       caminho do json do transcrever.py
 """
 import json, os, re, subprocess, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from projeto import carregar
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -28,7 +34,9 @@ def probe(video):
     p = json.loads(subprocess.run(["ffprobe", "-v", "error", "-print_format", "json", "-show_format", "-show_streams", video],
                                   capture_output=True, text=True).stdout)
     v = next(s for s in p["streams"] if s["codec_type"] == "video")
-    return float(p["format"]["duration"]), v["width"], v["height"], any(s["codec_type"] == "audio" for s in p["streams"])
+    n, d = v.get("avg_frame_rate", "30/1").split("/")
+    fps = int(n) / int(d) if int(d) else 30
+    return float(p["format"]["duration"]), v["width"], v["height"], any(s["codec_type"] == "audio" for s in p["streams"]), fps
 
 
 def filtro_look(nome, ajuste_brilho=0):
@@ -81,14 +89,16 @@ def atempo(v):
 def main():
     proj_path, out = sys.argv[1], sys.argv[2]
     os.makedirs(out, exist_ok=True)
-    P = json.load(open(proj_path))
+    P = carregar(proj_path)
     base_dir = os.path.dirname(os.path.abspath(proj_path))
     rel = lambda p: p if os.path.isabs(p) else os.path.join(base_dir, p)
     video = rel(P["entrada"])
-    dur, W, H, tem_audio = probe(video)
+    dur, W, H, tem_audio, fps_src = probe(video)
     a, b = P.get("trecho") or [0, dur]
     vel = float(P.get("velocidade", 1.0))
     S = P.get("saida", {}); OW, OH, FPS = S.get("largura", 1080), S.get("altura", 1920), S.get("fps", 30)
+    if FPS == "auto":
+        FPS = 60 if fps_src > 45 else 30
     A = P.get("audio", {}); usa_original = A.get("original", True) and tem_audio
     sil = P.get("silencio", {"ativo": usa_original})
 
@@ -120,6 +130,17 @@ def main():
         fc.append(f"[x]scale={OW}:{OH}:force_original_aspect_ratio=increase,crop={OW}:{OH},boxblur=30:2,eq=brightness=-0.18[bg]")
         fc.append(f"[y]crop={cw}:{H}:{x}:0,scale={OW}:{fg_h}:flags=lanczos[fg]")
         fc.append(f"[bg][fg]overlay=0:{y}[v]")
+    elif L["tipo"] == "stream-dividido":
+        fx, fy, fw, fh = L["facecam"]
+        jx, jy, jw, jh = L.get("jogo") or [0, 0, W, H]
+        top = int(OH * L.get("divisao", 0.42)) // 2 * 2
+        bot = OH - top
+        esp = int(L.get("espessura", 0)) // 2 * 2
+        fc.append(f"{vchain},split[x][y]")
+        fc.append(f"[x]crop={fw}:{fh}:{fx}:{fy},scale={OW}:{top}:force_original_aspect_ratio=increase:flags=lanczos,crop={OW}:{top}[cam]")
+        fc.append(f"[y]crop={jw}:{jh}:{jx}:{jy},scale={OW}:{bot}:force_original_aspect_ratio=increase:flags=lanczos,crop={OW}:{bot}[jogo]")
+        borda = (f",drawbox=x=0:y={top - esp // 2}:w={OW}:h={esp}:color={L.get('borda', '#8B5CF6').replace('#', '0x')}:t=fill" if esp else "")
+        fc.append(f"[cam][jogo]vstack=inputs=2{borda}[v]")
     else:
         cx = L.get("crop_cx")
         if cx is None:

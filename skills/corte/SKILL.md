@@ -17,6 +17,7 @@ VÍDEO: [anexar .mp4 — YouTube: baixar em br.vidssave.com]
 CORTES: 3   [quantos cortes gerar: 1, 2, 3, 5...]
 DURAÇÃO: 60s
 MINUTOS: [opcional — ex.: 4:20-5:15, 9:30, 12:00-12:45]
+PERFIL: [opcional — bufaclips]
 TOM: informativo | polêmico | humor | motivacional
 OBS: [opcional — tema, título, look, estilo de legenda]
 ```
@@ -34,6 +35,15 @@ MINUTOS (opcional): onde o usuário quer cortar.
 - Minuto solto (`9:30`): monte um corte de ~DURAÇÃO que contenha esse momento, começando e terminando em frase completa (de preferência começando um pouco antes, pra pegar o contexto).
 - Se vierem menos MINUTOS que CORTES, os que faltam você escolhe pelos trechos mais fortes do resto do vídeo, sem sobrepor os que o usuário marcou.
 - Sem MINUTOS: você escolhe todos os cortes.
+
+PERFIL (opcional): padrões de um canal, em `perfis/<nome>.json` no repositório. Use `"perfil": "<nome>"` no projeto.json e só sobrescreva o que mudar.
+- `bufaclips` (games e streamers):
+  - Duração entre 20 e 60s.
+  - Layout `stream-dividido`: facecam em cima, jogo embaixo. Marque o retângulo da facecam (`layout.facecam: [x, y, w, h]` em pixels do original) olhando a `folha.jpg`. Se não houver facecam, use `fundo-desfocado` ou `tela-cheia`.
+  - Áudio: voz do streamer + som do jogo, com corte de silêncio leve. FPS igual ao original (30 ou 60).
+  - Campos obrigatórios: `editoria` (engracado, rage, jogada, historia ou polemica) e `autorizacao` (quem autorizou, quando e a prova). Se o usuário não informar a autorização, pergunte antes de editar. Sem autorização, não publique: entregue só como rascunho e avise.
+  - Título e CTA: escolha a partir de `estilos/ganchos.json` pela editoria, adaptando ao momento real. Nunca atribua ao streamer uma fala que ele não disse. O CTA vai em `camadas.cta.texto`.
+  - Drive: use `drive.py nomes --editoria <editoria>`.
 
 Padrões:
 - 3 cortes de cerca de 60s cada, tom informativo.

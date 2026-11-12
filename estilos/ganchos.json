@@ -1,0 +1,23 @@
+{
+  "_descricao": "Biblioteca de ganchos (título) e CTAs por editoria. Ponto de partida: adaptar ao momento real, nunca atribuir falas ao streamer.",
+  "engracado": {
+    "ganchos": ["Ele não estava preparado pra isso", "Jogar com os amigos é exatamente assim", "Era impossível dar errado... até isso"],
+    "ctas": ["Marca aquele amigo que faz isso", "Qual foi o maior azar?"]
+  },
+  "rage": {
+    "ganchos": ["Ele simplesmente perdeu a cabeça", "A paciência acabou aqui"],
+    "ctas": ["Você também ficaria assim?", "Quem nunca?"]
+  },
+  "jogada": {
+    "ganchos": ["Olha o que esse cara conseguiu fazer", "Ele aceitou um desafio impossível"],
+    "ctas": ["Foi sorte ou habilidade?", "Você conseguiria?"]
+  },
+  "historia": {
+    "ganchos": ["Você sabe como ele começou?", "A reação dele foi melhor que o lance"],
+    "ctas": ["Você acompanhava desde o começo?", "Quem teve a melhor reação?"]
+  },
+  "polemica": {
+    "ganchos": ["Essa opinião vai irritar muita gente", "Ele falou o que ninguém quer ouvir"],
+    "ctas": ["Você concorda?", "Ele tá certo ou errado?"]
+  }
+}

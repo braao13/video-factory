@@ -1,0 +1,4 @@
+{"descricao": "BufaClips. Montserrat, branca com contorno preto, palavra falada em roxo claro e maior.",
+ "fonte": "Montserrat", "peso": 900, "tamanho": 86, "caixa_alta": true, "max_palavras": 3, "pausa_quebra": 0.35,
+ "cor": "#FFFFFF", "cor_ativa": "#C4B5FD", "escala_ativa": 1.12, "rotacao_ativa": 0,
+ "contorno": 12, "cor_contorno": "#000000", "sombra": "0 6px 0 rgba(0,0,0,.6)", "y": 1420}

@@ -48,15 +48,16 @@ def limpa(t):
     return re.sub(r"\s+", " ", t)[:60]
 
 
-def nomes(lista, tema, cortes=None, modelo=False):
+def nomes(lista, tema, cortes=None, modelo=False, editoria=None):
     todos = " | ".join(f["nome"] for k in lista for f in lista[k])
     nums = [int(m) for m in re.findall(r"video\s+(\d+)", todos, re.I)]
     nn = f"{(max(nums) if nums else 0) + 1:02d}"
+    ed = f"{limpa(editoria)} - " if editoria else ""
     out = {"numero": nn, "originais": f"Video {nn} - {limpa(tema)}.mp4"}
     if modelo:
         out["modelos"] = f"Video {nn} - {limpa(tema)}.mp4"
-    out["editados"] = ([f"Video {nn}-{i} - {limpa(t)}.mp4" for i, t in enumerate(cortes.split("|"), 1)]
-                       if cortes else [f"Video {nn} - {limpa(tema)}.mp4"])
+    out["editados"] = ([f"Video {nn}-{i} - {ed}{limpa(t)}.mp4" for i, t in enumerate(cortes.split("|"), 1)]
+                       if cortes else [f"Video {nn} - {ed}{limpa(tema)}.mp4"])
     return out
 
 
@@ -90,13 +91,14 @@ def main():
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("listar")
     n = sub.add_parser("nomes"); n.add_argument("--tema", required=True); n.add_argument("--cortes"); n.add_argument("--modelo", action="store_true")
+    n.add_argument("--editoria", help="ex.: rage -> 'Video 05-1 - rage - tema.mp4' nos editados")
     e = sub.add_parser("enviar"); e.add_argument("arquivo"); e.add_argument("--pasta", required=True, choices=["editados", "originais", "modelos"])
     e.add_argument("--nome", required=True); e.add_argument("--substituir", action="store_true")
     a = ap.parse_args()
     if a.cmd == "listar":
         print(json.dumps(chamar("listar"), ensure_ascii=False, indent=2))
     elif a.cmd == "nomes":
-        print(json.dumps(nomes(chamar("listar"), a.tema, a.cortes, a.modelo), ensure_ascii=False, indent=2))
+        print(json.dumps(nomes(chamar("listar"), a.tema, a.cortes, a.modelo, a.editoria), ensure_ascii=False, indent=2))
     else:
         enviar(a.arquivo, a.pasta, a.nome, a.substituir)
 
