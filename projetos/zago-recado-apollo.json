@@ -1,0 +1,177 @@
+{
+  "nome": "zago-recado-apollo",
+  "tipo": "corte",
+  "entrada": "/mnt/user-data/uploads/vidssave_com_ZAGO_manda_recado_pro_APOLLO_após_perder_o_X2____720P.mp4",
+  "trecho": [
+    453.7,
+    519.4
+  ],
+  "silencio": {
+    "ativo": true,
+    "db": -30,
+    "min": 0.15,
+    "margem": 0.06
+  },
+  "look": "berlim",
+  "ajuste_brilho": 0,
+  "layout": {
+    "tipo": "fundo-desfocado",
+    "crop_cx": 640,
+    "crop_largura": 660,
+    "y": 380
+  },
+  "audio": {
+    "original": true,
+    "lufs": -14
+  },
+  "palavras": "/home/claude/video-factory/saida/zago-apollo/palavras_orig.json",
+  "correcoes": [
+    {
+      "de": "os",
+      "para": "o"
+    },
+    {
+      "de": "agos",
+      "para": "Zago"
+    },
+    {
+      "de": "agas",
+      "para": "Zago"
+    },
+    {
+      "de": "dos",
+      "para": "do"
+    },
+    {
+      "de": "apolo",
+      "para": "Apollo"
+    },
+    {
+      "de": "viúdas",
+      "para": "views das"
+    },
+    {
+      "de": "junto",
+      "para": "junta"
+    },
+    {
+      "de": "lésbica",
+      "para": "Lésbica ou"
+    },
+    {
+      "de": "racista",
+      "para": "Racista"
+    },
+    {
+      "de": "tênis",
+      "para": "gente"
+    },
+    {
+      "de": "viu",
+      "para": "view"
+    }
+  ],
+  "camadas": {
+    "versus": {
+      "estilo": "padrao",
+      "esquerda": {
+        "img": "/home/claude/video-factory/saida/zago-apollo/zago.png",
+        "nome": "ZAGO",
+        "foco": "center 35%"
+      },
+      "direita": {
+        "img": "/home/claude/video-factory/saida/zago-apollo/apollo.png",
+        "nome": "APOLLO",
+        "foco": "center 40%"
+      },
+      "de": 0,
+      "ate": null
+    },
+    "titulo": {
+      "estilo": "badge-amarelo",
+      "texto": "OLHA O QUE O ZAGO FALOU PRO APOLLO",
+      "destaque": "ZAGO"
+    },
+    "legenda": {
+      "estilo": "amarela-impacto",
+      "cores_palavras": {
+        "#FF3B3B": [
+          "porra",
+          "ronca",
+          "provocando",
+          "marra",
+          "derrubar",
+          "nada"
+        ],
+        "#33F07A": [
+          "paz",
+          "calma",
+          "bem"
+        ],
+        "#33D6FF": [
+          "spotify",
+          "ouvintes",
+          "views das",
+          "música",
+          "músicas",
+          "milhão",
+          "zago",
+          "apollo"
+        ]
+      }
+    },
+    "emojis": [
+      {
+        "t": 3.1,
+        "e": "🎧",
+        "dur": 1.8
+      },
+      {
+        "t": 9.0,
+        "e": "🔥",
+        "dur": 1.6
+      },
+      {
+        "t": 20.3,
+        "e": "🎤",
+        "dur": 1.6
+      },
+      {
+        "t": 37.4,
+        "e": "🤫",
+        "dur": 1.6
+      },
+      {
+        "t": 52.4,
+        "e": "🕊️",
+        "dur": 1.6
+      },
+      {
+        "t": 57.6,
+        "e": "😤",
+        "dur": 0.7
+      }
+    ],
+    "zooms": [
+      9.0,
+      20.8,
+      24.1,
+      37.0,
+      43.3,
+      54.6
+    ],
+    "zoom_forca": 0.12,
+    "flashes": [
+      5.7,
+      18.0,
+      36.6,
+      50.0
+    ],
+    "zoom_lento": 0.05,
+    "progresso": {
+      "cor": "#FFE600",
+      "altura": 14
+    }
+  },
+  "drive": "Video 03-1"
+}
