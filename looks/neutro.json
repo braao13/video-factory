@@ -1,0 +1,6 @@
+{
+  "nome": "neutro",
+  "descricao": "Correcao minima: so um toque de contraste e saturacao. Quando o video ja esta bom.",
+  "eq": {"contrast": 1.04, "saturation": 1.06},
+  "nitidez": 0.4
+}

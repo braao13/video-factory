@@ -1,0 +1,7 @@
+{
+  "nome": "quente-vivo",
+  "descricao": "Quente e saturado, clima lifestyle/vlog/comida. Ainda nao testado em video real.",
+  "eq": {"contrast": 1.08, "saturation": 1.22, "gamma": 0.98},
+  "temperatura": {"k": 5000, "mix": 0.35},
+  "nitidez": 0.5
+}

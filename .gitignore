@@ -1,0 +1,10 @@
+node_modules/
+out/
+saida/
+.env.sh
+*.mp4
+*.mov
+*.mp3
+*.wav
+*.m4a
+remotion/public/

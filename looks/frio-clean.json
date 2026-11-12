@@ -1,0 +1,7 @@
+{
+  "nome": "frio-clean",
+  "descricao": "Frio e limpo, tipo podcast/tech. Ainda nao testado em video real.",
+  "eq": {"contrast": 1.08, "saturation": 0.95, "gamma": 0.97},
+  "temperatura": {"k": 8000, "mix": 0.35},
+  "nitidez": 0.5
+}
