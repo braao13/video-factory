@@ -2,28 +2,156 @@
   "nome": "corte1-medo-x-festa",
   "tipo": "corte",
   "entrada": "/home/claude/clip/src.mp4",
-  "trecho": [258.8, 316.4],
-  "silencio": {"ativo": true, "db": -30, "min": 0.15, "margem": 0.06},
+  "trecho": [
+    258.8,
+    316.4
+  ],
+  "silencio": {
+    "ativo": true,
+    "db": -30,
+    "min": 0.15,
+    "margem": 0.06
+  },
   "look": "berlim",
   "ajuste_brilho": -12,
-  "layout": {"tipo": "fundo-desfocado", "crop_cx": 630, "crop_largura": 560, "y": 300},
-  "audio": {"original": true, "lufs": -14},
+  "layout": {
+    "tipo": "fundo-desfocado",
+    "crop_cx": 630,
+    "crop_largura": 560,
+    "y": 300
+  },
+  "audio": {
+    "original": true,
+    "lufs": -14
+  },
   "palavras": "/home/claude/vftest/words_full.json",
-  "correcoes": [{"de": "qual", "para": "causa"}, {"de": "pelador.", "para": "dor."}, {"de": "pro", "para": "pela", "t": 40.9},
-                {"de": "o", "para": "por", "t": 31.7}, {"de": "suas", "para": "coisas", "t": 15.8}],
+  "correcoes": [
+    {
+      "de": "qual",
+      "para": "causa"
+    },
+    {
+      "de": "pelador.",
+      "para": "dor."
+    },
+    {
+      "de": "pro",
+      "para": "pela",
+      "t": 40.9
+    },
+    {
+      "de": "o",
+      "para": "por",
+      "t": 31.7
+    },
+    {
+      "de": "suas",
+      "para": "coisas",
+      "t": 15.8
+    }
+  ],
   "camadas": {
-    "titulo": {"estilo": "badge-amarelo", "texto": "MEDO X FESTA", "destaque": "X", "subtitulo": "o que decidiu a eleição na TV"},
-    "legenda": {"estilo": "amarela-impacto", "cores_palavras": {
-      "#FF3B3B": ["medo", "dor", "errado", "perder"],
-      "#33F07A": ["festa", "alegria", "amor", "solução", "ganhamos", "ganhar"],
-      "#33D6FF": ["tv", "televisão", "marketing", "propaganda"]}},
-    "emojis": [{"t": 0.18, "e": "📺", "dur": 2.2}, {"t": 2.72, "e": "😨", "dur": 1.6}, {"t": 4.1, "e": "🎉", "dur": 2.2},
-               {"t": 4.74, "e": "🥳", "dur": 1.6}, {"t": 11.78, "e": "❌", "dur": 1.6}, {"t": 13.53, "e": "😱"},
-               {"t": 40.27, "e": "❤️", "dur": 0.9}, {"t": 41.07, "e": "💔", "dur": 1.2}, {"t": 41.89, "e": "🇧🇷", "dur": 2.4},
-               {"t": 51.5, "e": "📺"}],
-    "zooms": [2.72, 11.78, 13.53, 25.5, 41.07, 52.8], "zoom_forca": 0.12,
-    "flashes": [11.78, 17.38, 41.7, 45.15],
+    "titulo": {
+      "estilo": "badge-amarelo",
+      "texto": "MEDO X FESTA",
+      "destaque": "X",
+      "subtitulo": "o que decidiu a eleição na TV"
+    },
+    "legenda": {
+      "estilo": "amarela-impacto",
+      "cores_palavras": {
+        "#FF3B3B": [
+          "medo",
+          "dor",
+          "errado",
+          "perder"
+        ],
+        "#33F07A": [
+          "festa",
+          "alegria",
+          "amor",
+          "solução",
+          "ganhamos",
+          "ganhar"
+        ],
+        "#33D6FF": [
+          "tv",
+          "televisão",
+          "marketing",
+          "propaganda"
+        ]
+      }
+    },
+    "emojis": [
+      {
+        "t": 0.18,
+        "e": "📺",
+        "dur": 2.2
+      },
+      {
+        "t": 2.72,
+        "e": "😨",
+        "dur": 1.6
+      },
+      {
+        "t": 4.1,
+        "e": "🎉",
+        "dur": 2.2
+      },
+      {
+        "t": 4.74,
+        "e": "🥳",
+        "dur": 1.6
+      },
+      {
+        "t": 11.78,
+        "e": "❌",
+        "dur": 1.6
+      },
+      {
+        "t": 13.53,
+        "e": "😱"
+      },
+      {
+        "t": 40.27,
+        "e": "❤️",
+        "dur": 0.9
+      },
+      {
+        "t": 41.07,
+        "e": "💔",
+        "dur": 1.2
+      },
+      {
+        "t": 41.89,
+        "e": "🇧🇷",
+        "dur": 2.4
+      },
+      {
+        "t": 51.5,
+        "e": "📺"
+      }
+    ],
+    "zooms": [
+      2.72,
+      11.78,
+      13.53,
+      25.5,
+      41.07,
+      52.8
+    ],
+    "zoom_forca": 0.12,
+    "flashes": [
+      11.78,
+      17.38,
+      41.7,
+      45.15
+    ],
     "zoom_lento": 0.05,
-    "progresso": {"cor": "#FFE600", "altura": 14}
-  }
+    "progresso": {
+      "cor": "#FFE600",
+      "altura": 14
+    }
+  },
+  "drive": "Video 01-1"
 }
