@@ -1,0 +1,3 @@
+{"descricao": "Corte 1. Etiqueta amarela inclinada, texto preto, destaque vermelho, subtítulo em tarja preta.",
+ "tipo": "badge", "fonte": "Inter", "peso": 900, "tamanho": 66, "cor": "#111111", "fundo": "#FFE600",
+ "cor_destaque": "#E0001B", "raio": 18, "rotacao": -2, "y": 110, "sub_tamanho": 46, "sub_cor": "#FFFFFF", "sub_fundo": "#111111"}

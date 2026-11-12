@@ -1,0 +1,4 @@
+{"descricao": "Texto branco numa caixa preta arredondada, palavra ativa em amarelo. Lê bem em qualquer fundo (tutorial/informativo).",
+ "fonte": "Inter", "peso": 800, "tamanho": 70, "caixa_alta": false, "max_palavras": 4, "pausa_quebra": 0.4,
+ "cor": "#FFFFFF", "cor_ativa": "#FFE600", "escala_ativa": 1.05, "rotacao_ativa": 0,
+ "contorno": 0, "cor_contorno": "#000000", "sombra": "none", "fundo": "rgba(0,0,0,.82)", "raio_fundo": 18, "y": 1380}

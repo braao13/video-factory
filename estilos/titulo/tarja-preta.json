@@ -1,0 +1,3 @@
+{"descricao": "Faixa preta de ponta a ponta com texto branco. Visual de notícia/documentário.",
+ "tipo": "tarja", "fonte": "Inter", "peso": 900, "tamanho": 60, "cor": "#FFFFFF", "fundo": "rgba(0,0,0,.85)",
+ "cor_destaque": "#FFE600", "raio": 0, "rotacao": 0, "y": 140}

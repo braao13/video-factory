@@ -1,0 +1,13 @@
+{
+  "nome": "pov-trabalhando",
+  "tipo": "edicao",
+  "entrada": "/home/claude/ed/src.mp4",
+  "velocidade": 1.75,
+  "look": "natural-escuro",
+  "layout": {"tipo": "tela-cheia"},
+  "audio": {"original": false, "musica": {"arquivo": "/home/claude/ed/music.mp3", "inicio": 10.0078}},
+  "camadas": {
+    "titulo": {"estilo": "balao-branco", "texto": "Pov: você está me vendo trabalhar"},
+    "progresso": {"cor": "#FFFFFF"}
+  }
+}

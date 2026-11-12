@@ -1,0 +1,4 @@
+{"descricao": "Corte 1. Caixa alta, grossa, contorno preto, palavra ativa amarela e maior. Bom pra opinião/polêmica.",
+ "fonte": "Inter", "peso": 900, "tamanho": 92, "caixa_alta": true, "max_palavras": 3, "pausa_quebra": 0.35,
+ "cor": "#FFFFFF", "cor_ativa": "#FFE600", "escala_ativa": 1.14, "rotacao_ativa": -2,
+ "contorno": 14, "cor_contorno": "#000000", "sombra": "0 8px 0 rgba(0,0,0,.55)", "y": 1330}

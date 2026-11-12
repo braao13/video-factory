@@ -1,0 +1,4 @@
+{"descricao": "Discreta: texto normal, branco com sombra suave, palavras não faladas meio apagadas. Bom pra lifestyle/vlog.",
+ "fonte": "Inter", "peso": 800, "tamanho": 64, "caixa_alta": false, "max_palavras": 4, "pausa_quebra": 0.45,
+ "cor": "#FFFFFF", "cor_ativa": "#FFFFFF", "escala_ativa": 1.0, "rotacao_ativa": 0, "opacidade_inativa": 0.55,
+ "contorno": 0, "cor_contorno": "#000000", "sombra": "0 3px 12px rgba(0,0,0,.75)", "y": 1420}
