@@ -19,7 +19,7 @@ DURAÇÃO: 60s
 MINUTOS: [opcional — ex.: 4:20-5:15, 9:30, 12:00-12:45]
 PERFIL: [opcional — bufaclips]
 TOM: informativo | polêmico | humor | motivacional
-OBS: [opcional — tema, título, look, estilo de legenda]
+OBS: [opcional — tema, título, look, estilo de legenda, fotos: 1ª = Nome, 2ª = Nome]
 ```
 
 Se o vídeo veio anexado mas faltou algum campo, não pergunte: use os padrões abaixo e diga em 1 linha quais usou.
