@@ -19,3 +19,8 @@ Sistema de edição de vídeos curtos do Abraão. Responder em português do Bra
 5. `python3 pipeline/base.py projetos/<nome>.json saida/<nome>/`
 6. `python3 pipeline/render.py projetos/<nome>.json saida/<nome>/ --quadros 2,15,30` -> conferir
 7. `python3 pipeline/render.py projetos/<nome>.json saida/<nome>/` -> entregar com SendUserFile
+8. Após o ok do usuário: salvar no Drive (regras em `drive.json`).
+   - `.drive.env` não está no git: peça `VF_DRIVE_URL` e `VF_DRIVE_KEY` ao usuário (ou leia das instruções do projeto) e crie o arquivo.
+   - `python3 pipeline/drive.py nomes --tema "..." [--cortes "a|b"] [--modelo]` -> nomes com o número certo.
+   - `python3 pipeline/drive.py enviar <arquivo> --pasta originais|modelos|editados --nome "Video NN - tema.mp4"` (ajuste de vídeo já salvo: `--substituir`).
+   - Guardar `"drive": "Video NN"` no projeto.json e fazer o commit.

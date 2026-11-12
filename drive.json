@@ -13,5 +13,6 @@
     "sem_modelo": "se nao houver video modelo, nada vai pra pasta modelos (o numero fica vazio la)",
     "ajuste": "re-render de um video ja salvo: subir com o mesmo nome e mandar o antigo pra lixeira",
     "quando": "so depois do ok do usuario, junto com o commit do projeto"
-  }
+  },
+  "ponte": "drive/apps_script.gs publicado como App da Web; URL e CHAVE ficam em .drive.env (fora do git). Comandos: pipeline/drive.py listar | nomes | enviar"
 }

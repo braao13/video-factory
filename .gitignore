@@ -8,3 +8,4 @@ saida/
 *.wav
 *.m4a
 remotion/public/
+.drive.env
