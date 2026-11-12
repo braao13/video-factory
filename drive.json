@@ -1,0 +1,17 @@
+{
+  "conta": "pasta de galaum1908, compartilhada com o Drive conectado",
+  "raiz": "136jjnpCyVnjUBVVLz2Agq10GTB_UOFEz",
+  "pastas": {
+    "editados": "1lysKpa2762Y8yH62wyAndWE1540rSAoA",
+    "originais": "1zwuitr0BKm3B3z6-fLU1H9zuhUGY7T9b",
+    "modelos": "1bIGHwwiBI9ipWGNByOINC7E0YULueQNa"
+  },
+  "regras": {
+    "numero": "Video NN (2 digitos). Proximo = maior NN encontrado nas 3 pastas + 1. O mesmo NN liga original, modelo e editado.",
+    "nome": "Video NN - <tema curto em minusculas>.mp4",
+    "cortes": "original = 'Video NN - <tema do video longo>.mp4'; cada corte = 'Video NN-1 - <tema do corte>.mp4', NN-2, NN-3...",
+    "sem_modelo": "se nao houver video modelo, nada vai pra pasta modelos (o numero fica vazio la)",
+    "ajuste": "re-render de um video ja salvo: subir com o mesmo nome e mandar o antigo pra lixeira",
+    "quando": "so depois do ok do usuario, junto com o commit do projeto"
+  }
+}
