@@ -1,0 +1,4 @@
+{"descricao": "Versus clássico: borda vermelha x azul, VS amarelo. Combina com o título badge-amarelo.",
+ "fonte": "Inter", "peso": 900, "tam_foto": 200, "borda": 8, "cor_borda_esq": "#FF3B3B", "cor_borda_dir": "#33D6FF",
+ "cor_nome": "#FFFFFF", "fundo_nome": "#111111", "tam_nome": 34, "cor_vs": "#111111", "fundo_vs": "#FFE600", "tam_vs": 56,
+ "y": 50, "margem": 70, "altura": 270}

@@ -45,6 +45,8 @@ PERFIL (opcional): padrões de um canal, em `perfis/<nome>.json` no repositório
   - Título e CTA: escolha a partir de `estilos/ganchos.json` pela editoria, adaptando ao momento real. Nunca atribua ao streamer uma fala que ele não disse. O CTA vai em `camadas.cta.texto`.
   - Drive: use `drive.py nomes --editoria <editoria>`.
 
+FOTOS (opcional): se vierem 2 fotos anexadas junto com o vídeo, monte o cabeçalho **versus** (`camadas.versus`): a 1ª foto vai na esquerda e a 2ª na direita, com os nomes que o usuário der no OBS (ex.: `fotos: 1ª = Zago, 2ª = Apollo`). Se ele não der os nomes, pergunte. O título desce sozinho pra baixo do cabeçalho. Ajuste o `foco` de cada foto se o rosto ficar cortado nos quadros.
+
 Padrões:
 - 3 cortes de cerca de 60s cada, tom informativo.
 - Saída 9:16, 1080x1920, 30fps.

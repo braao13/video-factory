@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  AbsoluteFill, OffthreadVideo, staticFile, useCurrentFrame, useVideoConfig,
+  AbsoluteFill, OffthreadVideo, Img, staticFile, useCurrentFrame, useVideoConfig,
   interpolate, spring, Easing, Sequence,
 } from 'remotion';
 import '@fontsource/montserrat/800.css';
@@ -20,6 +20,10 @@ type EstiloTitulo = {
   raio: number; rotacao: number; y: number; sub_tamanho?: number; sub_cor?: string; sub_fundo?: string;
 };
 type TextoCfg = {estilo: EstiloTitulo; texto: string; destaque?: string; subtitulo?: string; de?: number; ate?: number; y?: number};
+type Lado = {img: string; nome?: string; foco?: string};
+type EstiloVersus = {fonte: string; peso: number; tam_foto: number; borda: number; cor_borda_esq: string; cor_borda_dir: string;
+  cor_nome: string; fundo_nome: string; tam_nome: number; cor_vs: string; fundo_vs: string; tam_vs: number; y: number; margem: number};
+type VersusCfg = {estilo: EstiloVersus; esquerda: Lado; direita: Lado; de?: number; ate?: number; y?: number};
 type Emoji = {t: number; e: string; dur?: number; x?: number; y?: number; tam?: number};
 export type Props = {
   info: {duracao: number; fps: number; largura: number; altura: number};
@@ -28,7 +32,8 @@ export type Props = {
   camadas: {
     legenda?: {estilo: EstiloLegenda; cores_palavras?: Record<string, string[]>; y?: number} | null;
     titulo?: TextoCfg | null;
-    cta?: (TextoCfg & {duracao?: number}) | null;   // texto final; aparece nos ultimos `duracao` s (padrao 3)
+    cta?: (TextoCfg & {duracao?: number}) | null;
+    versus?: VersusCfg | null;   // cabecalho com 2 fotos redondas + VS   // texto final; aparece nos ultimos `duracao` s (padrao 3)
     emojis?: Emoji[];
     zooms?: number[]; zoom_forca?: number;
     flashes?: number[];
@@ -133,6 +138,43 @@ const Titulo: React.FC<{cfg: TextoCfg}> = ({cfg}) => {
   );
 };
 
+// ---------- versus ----------
+const Versus: React.FC<{cfg: VersusCfg}> = ({cfg}) => {
+  const f0 = useCurrentFrame();
+  const {fps, width} = useVideoConfig();
+  const E = cfg.estilo;
+  const f = f0 - Math.round((cfg.de ?? 0) * fps);
+  const inE = spring({frame: f, fps, config: {damping: 14, stiffness: 140}});
+  const inD = spring({frame: f - 4, fps, config: {damping: 14, stiffness: 140}});
+  const inVs = spring({frame: f - 10, fps, config: {damping: 8, stiffness: 200}});
+  const out = cfg.ate ? interpolate(f0 / fps, [cfg.ate - 0.25, cfg.ate], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}) : 1;
+  if (f < 0) return null;
+  const pulso = 1 + 0.06 * Math.sin(f / 7);
+  const top = cfg.y ?? E.y;
+  const foto = (l: Lado, cor: string, k: number, lado: 'e' | 'd') => (
+    <div style={{position: 'absolute', top, left: lado === 'e' ? E.margem : width - E.margem - E.tam_foto, width: E.tam_foto,
+      display: 'flex', flexDirection: 'column', alignItems: 'center',
+      transform: `translateX(${(1 - k) * (lado === 'e' ? -400 : 400)}px)`}}>
+      <div style={{width: E.tam_foto, height: E.tam_foto, borderRadius: '50%', overflow: 'hidden', border: `${E.borda}px solid ${cor}`,
+        boxShadow: `0 0 0 4px rgba(0,0,0,.6), 0 10px 30px rgba(0,0,0,.5)`, background: '#222'}}>
+        <Img src={staticFile(l.img)} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: l.foco ?? 'center 25%'}} />
+      </div>
+      {l.nome && <div style={{marginTop: -18, background: E.fundo_nome, color: E.cor_nome, fontFamily: E.fonte, fontWeight: E.peso,
+        fontSize: E.tam_nome, padding: '4px 16px', borderRadius: 10, whiteSpace: 'nowrap', border: `3px solid ${cor}`}}>{l.nome}</div>}
+    </div>
+  );
+  return (
+    <AbsoluteFill style={{opacity: out}}>
+      {foto(cfg.esquerda, E.cor_borda_esq, inE, 'e')}
+      {foto(cfg.direita, E.cor_borda_dir, inD, 'd')}
+      <div style={{position: 'absolute', top: top + E.tam_foto / 2 - E.tam_vs * 0.75, left: width / 2 - E.tam_vs * 0.75,
+        width: E.tam_vs * 1.5, height: E.tam_vs * 1.5, borderRadius: '50%', background: E.fundo_vs, color: E.cor_vs,
+        fontFamily: E.fonte, fontWeight: 900, fontSize: E.tam_vs, lineHeight: `${E.tam_vs * 1.5}px`, textAlign: 'center',
+        transform: `scale(${inVs * pulso}) rotate(-8deg)`, boxShadow: '0 8px 24px rgba(0,0,0,.5)'}}>VS</div>
+    </AbsoluteFill>
+  );
+};
+
 // ---------- emoji ----------
 const Sticker: React.FC<Required<Pick<Emoji, 'e' | 'x' | 'y' | 'dur' | 'tam'>> & {r: number}> = ({e, x, y, dur, tam, r}) => {
   const f = useCurrentFrame();
@@ -166,6 +208,7 @@ export const Template: React.FC<Props> = ({video, palavras = [], camadas: C}) =>
         <OffthreadVideo src={staticFile(video)} />
       </AbsoluteFill>
 
+      {C.versus && <Versus cfg={C.versus} />}
       {C.titulo && <Titulo cfg={C.titulo} />}
       {C.cta && <Titulo cfg={{...C.cta, de: C.cta.de ?? Math.max(0, durationInFrames / fps - (C.cta.duracao ?? 3))}} />}
 

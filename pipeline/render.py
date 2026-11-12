@@ -12,6 +12,8 @@ Bloco "camadas" do projeto.json:
   "zooms": [2.72, 11.78], "zoom_forca": 0.12, "flashes": [11.78], "zoom_lento": 0.05,
   "batidas": [..] ou "batidas": "auto" (detecta na musica), "pulso_forca": 0.035,
   "progresso": {"cor": "#FFE600"}
+  "versus":   {"estilo": "padrao", "esquerda": {"img": "zago.jpg", "nome": "ZAGO"}, "direita": {"img": "apollo.jpg", "nome": "APOLLO"},
+              "foco": "center 25%" (opcional por lado), "de": 0, "ate": null}   -> cabecalho com 2 fotos + VS; titulo desce sozinho
   "cta":      {"estilo": "cta-bufaclips", "texto": "Você concorda?", "destaque": "concorda", "duracao": 3}  (ultimos N s)
 """
 import argparse, json, os, shutil, subprocess, sys
@@ -66,6 +68,24 @@ def main():
         C.pop("cta", None)
     if C.get("titulo") and not C["titulo"].get("texto"):
         C.pop("titulo")
+    V = C.get("versus")
+    if V and V.get("esquerda") and V.get("direita"):
+        V = {**V, "estilo": estilo("versus", V.get("estilo", "padrao"), V.get("ajustes"))}
+        for lado in ("esquerda", "direita"):
+            src = V[lado]["img"]; src = src if os.path.isabs(src) else os.path.join(base_dir, src)
+            dst = f"{nome}_{lado}{os.path.splitext(src)[1].lower()}"
+            os.makedirs(os.path.join(REM, "public"), exist_ok=True)
+            shutil.copy(src, os.path.join(REM, "public", dst))
+            V[lado] = {**V[lado], "img": dst}
+        C["versus"] = V
+        # se o titulo cair em cima do cabecalho, desce pra logo abaixo dele
+        fim_cab = (V.get("y") or V["estilo"]["y"]) + V["estilo"].get("altura", 270)
+        if C.get("titulo"):
+            y_t = C["titulo"].get("y") or C["titulo"]["estilo"]["y"]
+            if y_t < fim_cab:
+                C["titulo"]["y"] = fim_cab
+    else:
+        C.pop("versus", None)
     if C.get("batidas") == "auto":
         C["batidas"] = batidas_auto(P, base_dir)
 

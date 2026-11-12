@@ -76,6 +76,9 @@
     "progresso": {
       "cor": "#8B5CF6",
       "altura": 12
+    },
+    "versus": {
+      "estilo": "bufaclips"
     }
   }
 }
